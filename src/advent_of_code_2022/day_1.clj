@@ -24,3 +24,12 @@
   (->> (parse-input input)
        (map sum)
        (apply max)))
+
+;; Part two
+
+(defn solution-part-two [input]
+  (->> (parse-input input)
+       (map sum)
+       (sort >)
+       (take 3)
+       (sum)))
