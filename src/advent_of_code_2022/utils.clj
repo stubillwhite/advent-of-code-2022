@@ -16,3 +16,5 @@
 (defn parse-long [s]
   (Long/parseLong (string/trim s)))
 
+(defn sum [coll]
+  (apply + coll))

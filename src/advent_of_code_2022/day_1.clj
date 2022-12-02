@@ -1,5 +1,5 @@
 (ns advent-of-code-2022.day-1
-  (:require [advent-of-code-2022.utils :refer [parse-long]]
+  (:require [advent-of-code-2022.utils :refer [parse-long sum]]
             [clojure.java.io :as io]
             [clojure.string :as string]))
 
@@ -16,9 +16,6 @@
   (->> (string/split input #"\n\n")
        (map parse-elf-load)
        (into [])))
-
-(defn- sum [coll]
-  (apply + coll))
 
 (defn solution-part-one [input]
   (->> (parse-input input)
