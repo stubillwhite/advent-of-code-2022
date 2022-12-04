@@ -1,7 +1,8 @@
 (ns advent-of-code-2022.day-2
-  (:require [advent-of-code-2022.utils :refer [parse-long sum]]
-            [clojure.java.io :as io]
-            [clojure.string :as string]))
+  (:require
+   [advent-of-code-2022.utils :refer [sum]]
+   [clojure.java.io :as io]
+   [clojure.string :as string]))
 
 (def problem-input
   (string/trim (slurp (io/resource "day-2-input.txt"))))
