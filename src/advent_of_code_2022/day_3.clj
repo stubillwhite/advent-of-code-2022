@@ -14,7 +14,7 @@
        (map string/join)
        (into [])))
 
-(defn- parse-input [input]
+(defn- parse-rucksacks [input]
   (->> (string/split input #"\n")
        (map parse-rucksack)
        (into [])))
@@ -33,10 +33,21 @@
     (- (int ch) 96)
     (- (int ch) 38)))
 
-(defn solution-part-one [input]
-  (->> (parse-input input)
+(defn- sum-of-priorities [xs]
+  (->> xs
        (map common-item)
        (map priority)
        (sum)))
 
+(defn solution-part-one [input]
+  (sum-of-priorities (parse-rucksacks input)))
 
+;; Part two
+
+(defn- parse-groups [input]
+  (->> (string/split input #"\n")
+       (partition 3)
+       (into [])))
+
+(defn solution-part-two [input]
+  (sum-of-priorities (parse-groups input)))
