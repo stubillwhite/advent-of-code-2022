@@ -30,4 +30,15 @@
        (filter fully-contains?)
        (count)))
 
+;; Part two
 
+(defn- overlap? [[r1 r2]]
+  (let [[[s1 e1] [s2 e2]] [r1 r2]]
+    (or (<= s1 s2 e1 e2)
+        (<= s2 s1 e2 e1)
+        (fully-contains? [r1 r2]))))
+
+(defn solution-part-two [input]
+  (->> (parse-input input)
+       (filter overlap?)
+       (count)))
