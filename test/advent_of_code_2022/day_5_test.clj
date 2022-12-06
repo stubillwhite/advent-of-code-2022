@@ -29,5 +29,11 @@
 (deftest solution-part-one-given-example-input-then-example-result
   (is (= "CMZ" (solution-part-one example-input))))
 
-(deftest solution-part-one-given-problem-input-then-correct-result
+(comment deftest solution-part-one-given-problem-input-then-correct-result
   (is (= "QPJPLMNNR" (solution-part-one problem-input))))
+
+(deftest solution-part-two-given-example-input-then-example-result
+  (is (= "MCD" (solution-part-two example-input))))
+
+(deftest solution-part-two-given-problem-input-then-correct-result
+  (is (= "BQDNWJPVJ" (solution-part-two problem-input))))
