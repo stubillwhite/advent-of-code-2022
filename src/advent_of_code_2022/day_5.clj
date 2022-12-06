@@ -15,8 +15,7 @@
         rows         (count parsed-lines)]
     (->> (apply interleave parsed-lines)
          (partition rows)
-         (map reverse)
-         (map (partial take-while identity))
+         (map (partial filter identity))
          (into []))))
 
 (defn- parse-instruction-line [s]
@@ -35,29 +34,29 @@
     {:configuration (parse-configuration configuration)
      :instructions  (parse-instructions instructions)}))
 
-(defn- execute-instruction [crate-extractor configuration {:keys [count from to]}]
+(defn- execute-instruction [crane configuration {:keys [count from to]}]
   (let [[from-idx to-idx] (map dec [from to])]
     (-> configuration
-        (assoc-in [to-idx]   (concat (configuration to-idx) (crate-extractor count (configuration from-idx))))
-        (assoc-in [from-idx] (drop-last count (configuration from-idx))))))
+        (assoc-in [to-idx]   (crane count (configuration from-idx) (configuration to-idx)))
+        (assoc-in [from-idx] (drop count (configuration from-idx))))))
 
 (defn- read-top-crates [configuration]
-  (string/join "" (map last configuration)))
+  (string/join "" (map first configuration)))
 
-(defn- reversing-crate-extractor [n stack]
-  (take n (reverse stack)))
+(defn- reversing-crane [count from-stack to-stack]
+  (concat (reverse (take count from-stack)) to-stack))
 
 (defn solution-part-one [input]
   (let [{:keys [configuration instructions]} (parse-input input)
-        executor (partial execute-instruction reversing-crate-extractor)]
+        executor (partial execute-instruction reversing-crane)]
     (read-top-crates (reduce executor configuration instructions))))
 
 ;; Part two
 
-(defn- non-reversing-crate-extractor [n stack]
-  (reverse (take n (reverse stack))))
+(defn- non-reversing-crane [count from-stack to-stack]
+  (concat (take count from-stack) to-stack))
 
 (defn solution-part-two [input]
   (let [{:keys [configuration instructions]} (parse-input input)
-        executor (partial execute-instruction non-reversing-crate-extractor)]
+        executor (partial execute-instruction non-reversing-crane)]
     (read-top-crates (reduce executor configuration instructions))))

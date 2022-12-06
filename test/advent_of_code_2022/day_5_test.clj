@@ -17,8 +17,8 @@
                 "move 1 from 1 to 2"]))
 
 (deftest parse-input-given-example-input-then-parses-correctly
-  (let [expected {:configuration [["Z" "N"]
-                                  ["M" "C" "D"]
+  (let [expected {:configuration [["N" "Z"]
+                                  ["D" "C" "M"]
                                   ["P"]]
                   :instructions  [{:count 1 :from 2 :to 1}
                                   {:count 3 :from 1 :to 3}
