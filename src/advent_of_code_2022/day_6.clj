@@ -15,8 +15,16 @@
 (defn- end-of-marker-index [s marker]
   (+ (.indexOf s (apply str marker)) (count marker)))
 
-(defn solution-part-one [input]
+(defn- characters-before-message [window-size input]
   (->> input
-       (partition 4 1)
+       (partition window-size 1)
        (find-first is-marker?)
        (end-of-marker-index input)))
+
+(defn solution-part-one [input]
+  (characters-before-message 4 input))
+
+;; Part two
+
+(defn solution-part-two [input]
+  (characters-before-message 14 input))
