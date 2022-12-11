@@ -1,5 +1,6 @@
 (ns advent-of-code-2022.day-6
   (:require
+   [advent-of-code-2022.utils :refer [find-first]]
    [clojure.java.io :as io]
    [clojure.string :as string]))
 
@@ -8,9 +9,6 @@
 
 (defn- is-marker? [xs]
   (= (count xs) (count (into #{} xs))))
-
-(defn- find-first [pred coll]
-  (first (filter pred coll)))
 
 (defn- end-of-marker-index [s marker]
   (+ (.indexOf s (apply str marker)) (count marker)))

@@ -18,3 +18,6 @@
 
 (defn sum [coll]
   (apply + coll))
+
+(defn find-first [pred coll]
+  (first (filter pred coll)))
