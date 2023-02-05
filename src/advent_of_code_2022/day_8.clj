@@ -19,13 +19,6 @@
        (map (fn [s] (->> (seq s) (map (comp parse-long str)))))
        (transpose)))
 
-(def smexample-input
-  (string/join "\n" ["30373"
-                     "25512"
-                     "65332"
-                     "33549"
-                     "35390"]))
-
 (defn- coordinates [grid]
   (let [width  (count (first grid))
         height (count grid)]
